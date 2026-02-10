@@ -1,0 +1,682 @@
+[
+  {
+    "id": "1",
+    "text": "Gruntfile.js 'use strict';\n\nconst globalThreshold = 50; // Global code coverage threshold (as a percentage)\n\nmodule.exports = function(grunt) {\n    grunt.initConfig({\n        qunit: {\n            all: ['js_tests/tests.html']\n        }\n    });\n\n    grunt.loadNpmTasks('grunt-contrib-qunit');\n    grunt.registerTask('test', ['qunit']);\n    grunt.registerTask('default', ['test']);\n};\n"
+  },
+  {
+    "id": "2",
+    "text": "eslint-recommended.js /* https://github.com/eslint/eslint/blob/v9.36.0/packages/js/src/configs/eslint-recommended.js */\n\n/*\nCopyright OpenJS Foundation and other contributors, <www.openjsf.org>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,"
+  },
+  {
+    "id": "3",
+    "text": "globals.js /* https://github.com/sindresorhus/globals/blob/v16.4.0/globals.json */\n\n/*\nMIT License\n\nCopyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n*/\n\n\"use strict\";\n\n\nmodule.exports = {\n    \"browser\": {\n        \"AbortController\": false,"
+  },
+  {
+    "id": "4",
+    "text": "pdm_build.py import os\nfrom typing import Any\n\nfrom pdm.backend.hooks import Context\n\nTIANGOLO_BUILD_PACKAGE = os.getenv(\"TIANGOLO_BUILD_PACKAGE\", \"fastapi\")\n\n\ndef pdm_build_initialize(context: Context) -> None:\n    metadata = context.config.metadata\n    # Get custom config for the current package, from the env var\n    config: dict[str, Any] = context.config.data[\"tool\"][\"tiangolo\"][\n        \"_internal-slim-build\"\n    ][\"packages\"].get(TIANGOLO_BUILD_PACKAGE)\n    if not config:\n        return\n    project_config: dict[str, Any] = config[\"project\"]\n    # Override main [project] configs with custom configs for this package\n    for key, value in project_config.items():\n        metadata[key] = value"
+  },
+  {
+    "id": "5",
+    "text": "generate_pxi.py import argparse\nimport os\n\nfrom Cython import Tempita\n\n\ndef process_tempita(pxifile, outfile) -> None:\n    with open(pxifile, encoding=\"utf-8\") as f:\n        tmpl = f.read()\n    pyxcontent = Tempita.sub(tmpl)\n\n    with open(outfile, \"w\", encoding=\"utf-8\") as f:\n        f.write(pyxcontent)\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"infile\", type=str, help=\"Path to the input file\")\n    parser.add_argument(\"-o\", \"--outdir\", type=str, help=\"Path to the output directory\")\n    args = parser.parse_args()"
+  },
+  {
+    "id": "6",
+    "text": "generate_version.py #!/usr/bin/env python3\n\n# Note: This file has to live next to setup.py or versioneer will not work\nimport argparse\nimport os\nimport sys\n\nimport versioneer\n\nsys.path.insert(0, \"\")\n\n\ndef write_version_info(path) -> None:\n    version = None\n    git_version = None\n\n    try:\n        import _version_meson\n\n        version = _version_meson.__version__"
+  },
+  {
+    "id": "7",
+    "text": "setup.py #!/usr/bin/env python3\n\n\"\"\"\nParts of this file were taken from the pyzmq project\n(https://github.com/zeromq/pyzmq) which have been permitted for use under the\nBSD license. Parts are from lxml (https://github.com/lxml/lxml)\n\"\"\"\n\nimport argparse\nimport multiprocessing\nimport os\nfrom os.path import join as pjoin\nimport platform\nimport shutil\nimport sys\nfrom sysconfig import get_config_vars\n\nimport numpy\nfrom pkg_resources import parse_version\nfrom setuptools import ("
+  },
+  {
+    "id": "8",
+    "text": "configure.py # Copyright 2017 The TensorFlow Authors. All Rights Reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n# ==============================================================================\n\"\"\"configure script to get build parameters from user.\"\"\"\n\nimport argparse\nimport errno\nimport json\nimport os"
+  },
+  {
+    "id": "9",
+    "text": "setup.py # Welcome to the PyTorch setup.py.\n# Environment variables you are probably interested in:\n#\n#   DEBUG\n#     build with -O0 and -g (debug symbols)\n#\n#   REL_WITH_DEB_INFO\n#     build with optimizations and -g (debug symbols)\n#\n#   USE_CUSTOM_DEBINFO=\"path/to/file1.cpp;path/to/file2.cpp\"\n#     build with debug info only for specified files\n#\n#   MAX_JOBS\n#     maximum number of compile jobs we should use to compile your code\n#\n#   USE_CUDA=0\n#     disables CUDA build\n#\n#   CFLAGS\n#     flags to apply to both C and C++ files to be compiled (a quirk of setup.py"
+  },
+  {
+    "id": "10",
+    "text": "conftest.py # Copyright 2020 The HuggingFace Team. All rights reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\n# tests directory-specific settings - this file is run automatically\n# by pytest before any tests are run\n\nimport doctest\nimport os\nimport sys"
+  },
+  {
+    "id": "11",
+    "text": "setup.py # Copyright 2021 The HuggingFace Team. All rights reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\n\"\"\"\nSimple check list from AllenNLP repo: https://github.com/allenai/allennlp/blob/main/setup.py\n\nTo create the package for pypi.\n\n1. Create the release branch named: v<RELEASE>-release, for example v4.19-release. For a patch release checkout the"
+  },
+  {
+    "id": "12",
+    "text": ".eslintrc.js 'use strict';\n\nconst {\n  es5Paths,\n  esNextPaths,\n} = require('./scripts/shared/pathsByLanguageVersion');\n\nconst restrictedGlobals = require('confusing-browser-globals');\n\nconst OFF = 0;\nconst WARNING = 1;\nconst ERROR = 2;\n\nmodule.exports = {\n  extends: ['prettier', 'plugin:jest/recommended'],\n\n  // Stop ESLint from looking for a configuration file in parent folders\n  root: true,\n\n  reportUnusedDisableDirectives: true,"
+  },
+  {
+    "id": "13",
+    "text": ".prettierrc.js 'use strict';\n\nconst {esNextPaths} = require('./scripts/shared/pathsByLanguageVersion');\n\nmodule.exports = {\n  bracketSpacing: false,\n  singleQuote: true,\n  bracketSameLine: true,\n  trailingComma: 'es5',\n  printWidth: 80,\n  parser: 'flow',\n  arrowParens: 'avoid',\n  overrides: [\n    {\n      files: ['*.code-workspace'],\n      options: {\n        parser: 'json-stringify',\n      },\n    },\n    {"
+  },
+  {
+    "id": "14",
+    "text": "ReactVersions.js 'use strict';\n\n// This module is the single source of truth for versioning packages that we\n// publish to npm.\n//\n// Packages will not be published unless they are added here.\n//\n// The @latest channel uses the version as-is, e.g.:\n//\n//   19.3.0\n//\n// The @canary channel appends additional information, with the scheme\n// <version>-<label>-<commit_sha>, e.g.:\n//\n//   19.3.0-canary-a1c2d3e4\n//\n// The @experimental channel doesn't include a version, only a date and a sha, e.g.:\n//\n//   0.0.0-experimental-241c4467e-20200129\n"
+  },
+  {
+    "id": "15",
+    "text": "babel.config-react-compiler.js 'use strict';\n\n/**\n * HACK: @poteto React Compiler inlines Zod in its build artifact. Zod spreads values passed to .map\n * which causes issues in @babel/plugin-transform-spread in loose mode, as it will result in\n * {undefined: undefined} which fails to parse.\n *\n * [@babel/plugin-transform-block-scoping', {throwIfClosureRequired: true}] also causes issues with\n * the built version of the compiler. The minimal set of plugins needed for this file is reexported\n * from babel.config-ts.\n *\n * I will remove this hack later when we move eslint-plugin-react-hooks into the compiler directory.\n **/\n\nconst baseConfig = require('./babel.config-ts');\n\nmodule.exports = {\n  plugins: baseConfig.plugins,\n};\n"
+  },
+  {
+    "id": "16",
+    "text": "babel.config-ts.js /**\n * This file is purely being used for local jest runs, and doesn't participate in the build process.\n */\n'use strict';\n\nmodule.exports = {\n  plugins: [\n    '@babel/plugin-syntax-jsx',\n    '@babel/plugin-transform-flow-strip-types',\n    ['@babel/plugin-transform-class-properties', {loose: true}],\n    ['@babel/plugin-transform-private-methods', {loose: true}],\n    '@babel/plugin-transform-classes',\n  ],\n  presets: [\n    ['@babel/preset-env', {targets: {node: 'current'}}],\n    '@babel/preset-typescript',\n  ],\n};\n"
+  },
+  {
+    "id": "17",
+    "text": "babel.config.js 'use strict';\n\nmodule.exports = {\n  plugins: [\n    '@babel/plugin-syntax-jsx',\n    '@babel/plugin-transform-flow-strip-types',\n    ['@babel/plugin-proposal-class-properties', {loose: true}],\n    'syntax-trailing-function-commas',\n    [\n      '@babel/plugin-proposal-object-rest-spread',\n      {loose: true, useBuiltIns: true},\n    ],\n    ['@babel/plugin-transform-template-literals', {loose: true}],\n    '@babel/plugin-transform-literals',\n    '@babel/plugin-transform-arrow-functions',\n    '@babel/plugin-transform-block-scoped-functions',\n    '@babel/plugin-transform-object-super',\n    '@babel/plugin-transform-shorthand-properties',\n    '@babel/plugin-transform-computed-properties',\n    '@babel/plugin-transform-for-of',"
+  },
+  {
+    "id": "18",
+    "text": "dangerfile.js /**\n * Copyright (c) Meta Platforms, Inc. and affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n'use strict';\n\n/* eslint-disable no-for-of-loops/no-for-of-loops */\n\n// Hi, if this is your first time editing/reading a Dangerfile, here's a summary:\n// It's a JS runtime which helps you provide continuous feedback inside GitHub.\n//\n// You can see the docs here: http://danger.systems/js/\n//\n// If you want to test changes Danger, I'd recommend checking out an existing PR\n// and then running the `danger pr` command.\n//\n// You'll need a GitHub token, you can re-use this one:"
+  },
+  {
+    "id": "19",
+    "text": "index.js /*!\n * express\n * Copyright(c) 2009-2013 TJ Holowaychuk\n * Copyright(c) 2013 Roman Shtylman\n * Copyright(c) 2014-2015 Douglas Christopher Wilson\n * MIT Licensed\n */\n\n'use strict';\n\nmodule.exports = require('./lib/express');\n"
+  },
+  {
+    "id": "20",
+    "text": "setup.py import sys\n\nif sys.version_info < (3, 10):  # noqa: UP036\n    sys.stderr.write(\"Requests requires Python 3.10 or later.\\n\")\n    sys.exit(1)\n\nfrom setuptools import setup\n\nsetup()\n"
+  },
+  {
+    "id": "bp1",
+    "text": "Sort list python lst.sort()"
+  },
+  {
+    "id": "bp2",
+    "text": "Reverse list python lst[::-1]"
+  },
+  {
+    "id": "bp3",
+    "text": "Sum list python sum(lst)"
+  },
+  {
+    "id": "bp4",
+    "text": "Find max list max(lst)"
+  },
+  {
+    "id": "bp5",
+    "text": "Find min list min(lst)"
+  },
+  {
+    "id": "bp6",
+    "text": "List comprehension [x*x for x in range(10)]"
+  },
+  {
+    "id": "bp7",
+    "text": "Filter even numbers [x for x in lst if x%2==0]"
+  },
+  {
+    "id": "bp8",
+    "text": "String lowercase s.lower()"
+  },
+  {
+    "id": "bp9",
+    "text": "String uppercase s.upper()"
+  },
+  {
+    "id": "bp10",
+    "text": "Split string s.split(',')"
+  },
+  {
+    "id": "bp11",
+    "text": "Join strings ' '.join(lst)"
+  },
+  {
+    "id": "bp12",
+    "text": "Check substring 'abc' in s"
+  },
+  {
+    "id": "bp13",
+    "text": "Dictionary keys d.keys()"
+  },
+  {
+    "id": "bp14",
+    "text": "Dictionary values d.values()"
+  },
+  {
+    "id": "bp15",
+    "text": "Merge dicts {**d1, **d2}"
+  },
+  {
+    "id": "bp16",
+    "text": "Set unique list list(set(lst))"
+  },
+  {
+    "id": "bp17",
+    "text": "Read file open('file.txt').read()"
+  },
+  {
+    "id": "bp18",
+    "text": "Write file open('file.txt','w').write('hello')"
+  },
+  {
+    "id": "bp19",
+    "text": "Append file open('file.txt','a').write('hi')"
+  },
+  {
+    "id": "bp20",
+    "text": "Random int import random; random.randint(1,10)"
+  },
+  {
+    "id": "bp21",
+    "text": "Shuffle list random.shuffle(lst)"
+  },
+  {
+    "id": "bp22",
+    "text": "Datetime now from datetime import datetime; datetime.now()"
+  },
+  {
+    "id": "bp23",
+    "text": "JSON load json.loads(data)"
+  },
+  {
+    "id": "bp24",
+    "text": "JSON dump json.dumps(obj)"
+  },
+  {
+    "id": "bp25",
+    "text": "Lambda add add=lambda a,b:a+b"
+  },
+  {
+    "id": "bp26",
+    "text": "Map function map(str,lst)"
+  },
+  {
+    "id": "bp27",
+    "text": "Zip lists zip(a,b)"
+  },
+  {
+    "id": "bp28",
+    "text": "Enumerate list for i,v in enumerate(lst): pass"
+  },
+  {
+    "id": "bp29",
+    "text": "Check even number n%2==0"
+  },
+  {
+    "id": "bp30",
+    "text": "Check odd number n%2!=0"
+  },
+  {
+    "id": "bp31",
+    "text": "Absolute value abs(x)"
+  },
+  {
+    "id": "bp32",
+    "text": "Round float round(x,2)"
+  },
+  {
+    "id": "bp33",
+    "text": "Copy list lst.copy()"
+  },
+  {
+    "id": "bp34",
+    "text": "Remove item list lst.remove(x)"
+  },
+  {
+    "id": "bp35",
+    "text": "Pop item lst.pop()"
+  },
+  {
+    "id": "bp36",
+    "text": "List length len(lst)"
+  },
+  {
+    "id": "bp37",
+    "text": "String length len(s)"
+  },
+  {
+    "id": "bp38",
+    "text": "String replace s.replace('a','b')"
+  },
+  {
+    "id": "bp39",
+    "text": "Strip string s.strip()"
+  },
+  {
+    "id": "bp40",
+    "text": "Title case s.title()"
+  },
+  {
+    "id": "bp41",
+    "text": "Capitalize string s.capitalize()"
+  },
+  {
+    "id": "bp42",
+    "text": "Sort dictionary sorted(d.items())"
+  },
+  {
+    "id": "bp43",
+    "text": "Flatten list [y for x in lst for y in x]"
+  },
+  {
+    "id": "bp44",
+    "text": "Swap variables a,b=b,a"
+  },
+  {
+    "id": "bp45",
+    "text": "Boolean check bool(x)"
+  },
+  {
+    "id": "bp46",
+    "text": "List to string str(lst)"
+  },
+  {
+    "id": "bp47",
+    "text": "String to list list(s)"
+  },
+  {
+    "id": "bp48",
+    "text": "Check digit s.isdigit()"
+  },
+  {
+    "id": "bp49",
+    "text": "Check alpha s.isalpha()"
+  },
+  {
+    "id": "bp50",
+    "text": "Exception handling try: pass\nexcept Exception as e: print(e)"
+  },
+  {
+    "id": "int1",
+    "text": "Reverse string s[::-1]"
+  },
+  {
+    "id": "int2",
+    "text": "Palindrome check s==s[::-1]"
+  },
+  {
+    "id": "int3",
+    "text": "Fibonacci recursion def fib(n): return n if n<2 else fib(n-1)+fib(n-2)"
+  },
+  {
+    "id": "int4",
+    "text": "Binary search def bs(a,x): l,r=0,len(a)-1\n while l<=r:\n  m=(l+r)//2\n  if a[m]==x:return m\n  if a[m]<x:l=m+1\n  else:r=m-1"
+  },
+  {
+    "id": "int5",
+    "text": "Bubble sort for i in range(n):\n for j in range(n-i-1):\n  if a[j]>a[j+1]:a[j],a[j+1]=a[j+1],a[j]"
+  },
+  {
+    "id": "int6",
+    "text": "Factorial recursion def fact(n): return 1 if n==0 else n*fact(n-1)"
+  },
+  {
+    "id": "int7",
+    "text": "Prime check all(n%i for i in range(2,int(n**0.5)+1))"
+  },
+  {
+    "id": "int8",
+    "text": "Remove duplicates list list(set(lst))"
+  },
+  {
+    "id": "int9",
+    "text": "Merge two lists a+b"
+  },
+  {
+    "id": "int10",
+    "text": "Intersection lists list(set(a)&set(b))"
+  },
+  {
+    "id": "int11",
+    "text": "Anagram check sorted(a)==sorted(b)"
+  },
+  {
+    "id": "int12",
+    "text": "Count characters collections.Counter(s)"
+  },
+  {
+    "id": "int13",
+    "text": "Rotate list lst[k:]+lst[:k]"
+  },
+  {
+    "id": "int14",
+    "text": "Flatten nested list [y for x in lst for y in x]"
+  },
+  {
+    "id": "int15",
+    "text": "Two sum seen=set();\nfor n in a:\n if target-n in seen:return True\n seen.add(n)"
+  },
+  {
+    "id": "int16",
+    "text": "Max subarray cur=maxs=a[0]\nfor n in a[1:]:cur=max(n,cur+n);maxs=max(maxs,cur)"
+  },
+  {
+    "id": "int17",
+    "text": "Linked list reverse prev=None\nwhile head:\n nxt=head.next;head.next=prev;prev=head;head=nxt"
+  },
+  {
+    "id": "int18",
+    "text": "Stack push stack.append(x)"
+  },
+  {
+    "id": "int19",
+    "text": "Stack pop stack.pop()"
+  },
+  {
+    "id": "int20",
+    "text": "Queue enqueue q.append(x)"
+  },
+  {
+    "id": "int21",
+    "text": "Queue dequeue q.pop(0)"
+  },
+  {
+    "id": "int22",
+    "text": "DFS graph def dfs(v):visited.add(v);[dfs(n) for n in g[v] if n not in visited]"
+  },
+  {
+    "id": "int23",
+    "text": "BFS graph from collections import deque"
+  },
+  {
+    "id": "int24",
+    "text": "GCD math.gcd(a,b)"
+  },
+  {
+    "id": "int25",
+    "text": "LCM a*b//math.gcd(a,b)"
+  },
+  {
+    "id": "int26",
+    "text": "Matrix transpose zip(*m)"
+  },
+  {
+    "id": "int27",
+    "text": "Kadane algorithm max(sum ending)"
+  },
+  {
+    "id": "int28",
+    "text": "Power recursion def pow(x,n): return 1 if n==0 else x*pow(x,n-1)"
+  },
+  {
+    "id": "int29",
+    "text": "Unique chars string len(set(s))==len(s)"
+  },
+  {
+    "id": "int30",
+    "text": "Longest word max(s.split(),key=len)"
+  },
+  {
+    "id": "int31",
+    "text": "Binary tree inorder def inorder(n): return inorder(n.l)+[n.v]+inorder(n.r) if n else []"
+  },
+  {
+    "id": "int32",
+    "text": "Tree height 1+max(h(l),h(r))"
+  },
+  {
+    "id": "int33",
+    "text": "Heap push heapq.heappush(h,x)"
+  },
+  {
+    "id": "int34",
+    "text": "Heap pop heapq.heappop(h)"
+  },
+  {
+    "id": "int35",
+    "text": "Sliding window max deque method"
+  },
+  {
+    "id": "int36",
+    "text": "Roman to int mapping dict"
+  },
+  {
+    "id": "int37",
+    "text": "Int to Roman division mapping"
+  },
+  {
+    "id": "int38",
+    "text": "Word frequency Counter(words)"
+  },
+  {
+    "id": "int39",
+    "text": "Subarray sum prefix sum"
+  },
+  {
+    "id": "int40",
+    "text": "Kth largest heapq.nlargest(k,a)"
+  },
+  {
+    "id": "int41",
+    "text": "Top k frequent Counter + heap"
+  },
+  {
+    "id": "int42",
+    "text": "String compression run length encoding"
+  },
+  {
+    "id": "int43",
+    "text": "Longest substring no repeat sliding window"
+  },
+  {
+    "id": "int44",
+    "text": "Valid parentheses stack check"
+  },
+  {
+    "id": "int45",
+    "text": "Matrix spiral layer traversal"
+  },
+  {
+    "id": "int46",
+    "text": "Merge intervals sort + merge"
+  },
+  {
+    "id": "int47",
+    "text": "Jump game greedy max reach"
+  },
+  {
+    "id": "int48",
+    "text": "Coin change dp array"
+  },
+  {
+    "id": "int49",
+    "text": "Edit distance dp matrix"
+  },
+  {
+    "id": "int50",
+    "text": "Subset sum dp boolean"
+  },
+  {
+    "id": "int51",
+    "text": "Knapsack dp 2D"
+  },
+  {
+    "id": "int52",
+    "text": "Longest common subsequence dp"
+  },
+  {
+    "id": "int53",
+    "text": "Permutations itertools.permutations"
+  },
+  {
+    "id": "int54",
+    "text": "Combinations itertools.combinations"
+  },
+  {
+    "id": "int55",
+    "text": "Binary addition bin(int(a,2)+int(b,2))"
+  },
+  {
+    "id": "int56",
+    "text": "Missing number n*(n+1)//2-sum(a)"
+  },
+  {
+    "id": "int57",
+    "text": "Find duplicate set detection"
+  },
+  {
+    "id": "int58",
+    "text": "Cycle detection list Floyd algorithm"
+  },
+  {
+    "id": "int59",
+    "text": "Rotate matrix zip reverse"
+  },
+  {
+    "id": "int60",
+    "text": "Median sorted arrays merge + median"
+  },
+  {
+    "id": "int61",
+    "text": "Climb stairs dp fibonacci"
+  },
+  {
+    "id": "int62",
+    "text": "House robber dp max"
+  },
+  {
+    "id": "int63",
+    "text": "Island count dfs grid"
+  },
+  {
+    "id": "int64",
+    "text": "Graph cycle detect dfs colors"
+  },
+  {
+    "id": "int65",
+    "text": "Trie insert node dict"
+  },
+  {
+    "id": "int66",
+    "text": "Trie search prefix traversal"
+  },
+  {
+    "id": "int67",
+    "text": "Quick sort divide pivot"
+  },
+  {
+    "id": "int68",
+    "text": "Merge sort divide merge"
+  },
+  {
+    "id": "int69",
+    "text": "Selection sort min swap"
+  },
+  {
+    "id": "int70",
+    "text": "Insertion sort shift insert"
+  },
+  {
+    "id": "int71",
+    "text": "Bit count bin(n).count('1')"
+  },
+  {
+    "id": "int72",
+    "text": "Power of two n&(n-1)==0"
+  },
+  {
+    "id": "int73",
+    "text": "Reverse integer int(str(n)[::-1])"
+  },
+  {
+    "id": "int74",
+    "text": "String to int atoi strip parse"
+  },
+  {
+    "id": "int75",
+    "text": "Largest rectangle histogram stack"
+  },
+  {
+    "id": "int76",
+    "text": "Stock buy sell max profit"
+  },
+  {
+    "id": "int77",
+    "text": "Water trapping two pointers"
+  },
+  {
+    "id": "int78",
+    "text": "Decode ways dp string"
+  },
+  {
+    "id": "int79",
+    "text": "Word break dp substring"
+  },
+  {
+    "id": "int80",
+    "text": "Alien dictionary topo sort"
+  },
+  {
+    "id": "int81",
+    "text": "Course schedule topological sort"
+  },
+  {
+    "id": "int82",
+    "text": "LRU cache OrderedDict"
+  },
+  {
+    "id": "int83",
+    "text": "Clone graph dfs copy"
+  },
+  {
+    "id": "int84",
+    "text": "Min stack two stacks"
+  },
+  {
+    "id": "int85",
+    "text": "Evaluate RPN stack eval"
+  },
+  {
+    "id": "int86",
+    "text": "Serialize tree preorder"
+  },
+  {
+    "id": "int87",
+    "text": "Deserialize tree parse tokens"
+  },
+  {
+    "id": "int88",
+    "text": "String zigzag row mapping"
+  },
+  {
+    "id": "int89",
+    "text": "Sudoku valid set checks"
+  },
+  {
+    "id": "int90",
+    "text": "Sudoku solve backtracking"
+  },
+  {
+    "id": "int91",
+    "text": "N queens backtracking"
+  },
+  {
+    "id": "int92",
+    "text": "Word ladder bfs"
+  },
+  {
+    "id": "int93",
+    "text": "Max depth tree dfs"
+  },
+  {
+    "id": "int94",
+    "text": "Symmetric tree mirror check"
+  },
+  {
+    "id": "int95",
+    "text": "Path sum dfs sum"
+  },
+  {
+    "id": "int96",
+    "text": "Flatten binary tree preorder"
+  },
+  {
+    "id": "int97",
+    "text": "Lowest common ancestor dfs"
+  },
+  {
+    "id": "int98",
+    "text": "Balanced tree height check"
+  },
+  {
+    "id": "int99",
+    "text": "Binary tree level order queue bfs"
+  },
+  {
+    "id": "int100",
+    "text": "Diameter tree dfs max path"
+  }
+]

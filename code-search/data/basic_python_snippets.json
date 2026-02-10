@@ -1,0 +1,252 @@
+[
+    {
+        "id": "bp1",
+        "description": "Sort list python",
+        "code": "lst.sort()"
+    },
+    {
+        "id": "bp2",
+        "description": "Reverse list python",
+        "code": "lst[::-1]"
+    },
+    {
+        "id": "bp3",
+        "description": "Sum list python",
+        "code": "sum(lst)"
+    },
+    {
+        "id": "bp4",
+        "description": "Find max list",
+        "code": "max(lst)"
+    },
+    {
+        "id": "bp5",
+        "description": "Find min list",
+        "code": "min(lst)"
+    },
+    {
+        "id": "bp6",
+        "description": "List comprehension",
+        "code": "[x*x for x in range(10)]"
+    },
+    {
+        "id": "bp7",
+        "description": "Filter even numbers",
+        "code": "[x for x in lst if x%2==0]"
+    },
+    {
+        "id": "bp8",
+        "description": "String lowercase",
+        "code": "s.lower()"
+    },
+    {
+        "id": "bp9",
+        "description": "String uppercase",
+        "code": "s.upper()"
+    },
+    {
+        "id": "bp10",
+        "description": "Split string",
+        "code": "s.split(',')"
+    },
+    {
+        "id": "bp11",
+        "description": "Join strings",
+        "code": "' '.join(lst)"
+    },
+    {
+        "id": "bp12",
+        "description": "Check substring",
+        "code": "'abc' in s"
+    },
+    {
+        "id": "bp13",
+        "description": "Dictionary keys",
+        "code": "d.keys()"
+    },
+    {
+        "id": "bp14",
+        "description": "Dictionary values",
+        "code": "d.values()"
+    },
+    {
+        "id": "bp15",
+        "description": "Merge dicts",
+        "code": "{**d1, **d2}"
+    },
+    {
+        "id": "bp16",
+        "description": "Set unique list",
+        "code": "list(set(lst))"
+    },
+    {
+        "id": "bp17",
+        "description": "Read file",
+        "code": "open('file.txt').read()"
+    },
+    {
+        "id": "bp18",
+        "description": "Write file",
+        "code": "open('file.txt','w').write('hello')"
+    },
+    {
+        "id": "bp19",
+        "description": "Append file",
+        "code": "open('file.txt','a').write('hi')"
+    },
+    {
+        "id": "bp20",
+        "description": "Random int",
+        "code": "import random; random.randint(1,10)"
+    },
+    {
+        "id": "bp21",
+        "description": "Shuffle list",
+        "code": "random.shuffle(lst)"
+    },
+    {
+        "id": "bp22",
+        "description": "Datetime now",
+        "code": "from datetime import datetime; datetime.now()"
+    },
+    {
+        "id": "bp23",
+        "description": "JSON load",
+        "code": "json.loads(data)"
+    },
+    {
+        "id": "bp24",
+        "description": "JSON dump",
+        "code": "json.dumps(obj)"
+    },
+    {
+        "id": "bp25",
+        "description": "Lambda add",
+        "code": "add=lambda a,b:a+b"
+    },
+    {
+        "id": "bp26",
+        "description": "Map function",
+        "code": "map(str,lst)"
+    },
+    {
+        "id": "bp27",
+        "description": "Zip lists",
+        "code": "zip(a,b)"
+    },
+    {
+        "id": "bp28",
+        "description": "Enumerate list",
+        "code": "for i,v in enumerate(lst): pass"
+    },
+    {
+        "id": "bp29",
+        "description": "Check even number",
+        "code": "n%2==0"
+    },
+    {
+        "id": "bp30",
+        "description": "Check odd number",
+        "code": "n%2!=0"
+    },
+    {
+        "id": "bp31",
+        "description": "Absolute value",
+        "code": "abs(x)"
+    },
+    {
+        "id": "bp32",
+        "description": "Round float",
+        "code": "round(x,2)"
+    },
+    {
+        "id": "bp33",
+        "description": "Copy list",
+        "code": "lst.copy()"
+    },
+    {
+        "id": "bp34",
+        "description": "Remove item list",
+        "code": "lst.remove(x)"
+    },
+    {
+        "id": "bp35",
+        "description": "Pop item",
+        "code": "lst.pop()"
+    },
+    {
+        "id": "bp36",
+        "description": "List length",
+        "code": "len(lst)"
+    },
+    {
+        "id": "bp37",
+        "description": "String length",
+        "code": "len(s)"
+    },
+    {
+        "id": "bp38",
+        "description": "String replace",
+        "code": "s.replace('a','b')"
+    },
+    {
+        "id": "bp39",
+        "description": "Strip string",
+        "code": "s.strip()"
+    },
+    {
+        "id": "bp40",
+        "description": "Title case",
+        "code": "s.title()"
+    },
+    {
+        "id": "bp41",
+        "description": "Capitalize string",
+        "code": "s.capitalize()"
+    },
+    {
+        "id": "bp42",
+        "description": "Sort dictionary",
+        "code": "sorted(d.items())"
+    },
+    {
+        "id": "bp43",
+        "description": "Flatten list",
+        "code": "[y for x in lst for y in x]"
+    },
+    {
+        "id": "bp44",
+        "description": "Swap variables",
+        "code": "a,b=b,a"
+    },
+    {
+        "id": "bp45",
+        "description": "Boolean check",
+        "code": "bool(x)"
+    },
+    {
+        "id": "bp46",
+        "description": "List to string",
+        "code": "str(lst)"
+    },
+    {
+        "id": "bp47",
+        "description": "String to list",
+        "code": "list(s)"
+    },
+    {
+        "id": "bp48",
+        "description": "Check digit",
+        "code": "s.isdigit()"
+    },
+    {
+        "id": "bp49",
+        "description": "Check alpha",
+        "code": "s.isalpha()"
+    },
+    {
+        "id": "bp50",
+        "description": "Exception handling",
+        "code": "try: pass\nexcept Exception as e: print(e)"
+    }
+]

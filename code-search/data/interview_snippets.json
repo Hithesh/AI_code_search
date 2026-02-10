@@ -1,0 +1,502 @@
+[
+    {
+        "id": "int1",
+        "description": "Reverse string",
+        "code": "s[::-1]"
+    },
+    {
+        "id": "int2",
+        "description": "Palindrome check",
+        "code": "s==s[::-1]"
+    },
+    {
+        "id": "int3",
+        "description": "Fibonacci recursion",
+        "code": "def fib(n): return n if n<2 else fib(n-1)+fib(n-2)"
+    },
+    {
+        "id": "int4",
+        "description": "Binary search",
+        "code": "def bs(a,x): l,r=0,len(a)-1\n while l<=r:\n  m=(l+r)//2\n  if a[m]==x:return m\n  if a[m]<x:l=m+1\n  else:r=m-1"
+    },
+    {
+        "id": "int5",
+        "description": "Bubble sort",
+        "code": "for i in range(n):\n for j in range(n-i-1):\n  if a[j]>a[j+1]:a[j],a[j+1]=a[j+1],a[j]"
+    },
+    {
+        "id": "int6",
+        "description": "Factorial recursion",
+        "code": "def fact(n): return 1 if n==0 else n*fact(n-1)"
+    },
+    {
+        "id": "int7",
+        "description": "Prime check",
+        "code": "all(n%i for i in range(2,int(n**0.5)+1))"
+    },
+    {
+        "id": "int8",
+        "description": "Remove duplicates list",
+        "code": "list(set(lst))"
+    },
+    {
+        "id": "int9",
+        "description": "Merge two lists",
+        "code": "a+b"
+    },
+    {
+        "id": "int10",
+        "description": "Intersection lists",
+        "code": "list(set(a)&set(b))"
+    },
+    {
+        "id": "int11",
+        "description": "Anagram check",
+        "code": "sorted(a)==sorted(b)"
+    },
+    {
+        "id": "int12",
+        "description": "Count characters",
+        "code": "collections.Counter(s)"
+    },
+    {
+        "id": "int13",
+        "description": "Rotate list",
+        "code": "lst[k:]+lst[:k]"
+    },
+    {
+        "id": "int14",
+        "description": "Flatten nested list",
+        "code": "[y for x in lst for y in x]"
+    },
+    {
+        "id": "int15",
+        "description": "Two sum",
+        "code": "seen=set();\nfor n in a:\n if target-n in seen:return True\n seen.add(n)"
+    },
+    {
+        "id": "int16",
+        "description": "Max subarray",
+        "code": "cur=maxs=a[0]\nfor n in a[1:]:cur=max(n,cur+n);maxs=max(maxs,cur)"
+    },
+    {
+        "id": "int17",
+        "description": "Linked list reverse",
+        "code": "prev=None\nwhile head:\n nxt=head.next;head.next=prev;prev=head;head=nxt"
+    },
+    {
+        "id": "int18",
+        "description": "Stack push",
+        "code": "stack.append(x)"
+    },
+    {
+        "id": "int19",
+        "description": "Stack pop",
+        "code": "stack.pop()"
+    },
+    {
+        "id": "int20",
+        "description": "Queue enqueue",
+        "code": "q.append(x)"
+    },
+    {
+        "id": "int21",
+        "description": "Queue dequeue",
+        "code": "q.pop(0)"
+    },
+    {
+        "id": "int22",
+        "description": "DFS graph",
+        "code": "def dfs(v):visited.add(v);[dfs(n) for n in g[v] if n not in visited]"
+    },
+    {
+        "id": "int23",
+        "description": "BFS graph",
+        "code": "from collections import deque"
+    },
+    {
+        "id": "int24",
+        "description": "GCD",
+        "code": "math.gcd(a,b)"
+    },
+    {
+        "id": "int25",
+        "description": "LCM",
+        "code": "a*b//math.gcd(a,b)"
+    },
+    {
+        "id": "int26",
+        "description": "Matrix transpose",
+        "code": "zip(*m)"
+    },
+    {
+        "id": "int27",
+        "description": "Kadane algorithm",
+        "code": "max(sum ending)"
+    },
+    {
+        "id": "int28",
+        "description": "Power recursion",
+        "code": "def pow(x,n): return 1 if n==0 else x*pow(x,n-1)"
+    },
+    {
+        "id": "int29",
+        "description": "Unique chars string",
+        "code": "len(set(s))==len(s)"
+    },
+    {
+        "id": "int30",
+        "description": "Longest word",
+        "code": "max(s.split(),key=len)"
+    },
+    {
+        "id": "int31",
+        "description": "Binary tree inorder",
+        "code": "def inorder(n): return inorder(n.l)+[n.v]+inorder(n.r) if n else []"
+    },
+    {
+        "id": "int32",
+        "description": "Tree height",
+        "code": "1+max(h(l),h(r))"
+    },
+    {
+        "id": "int33",
+        "description": "Heap push",
+        "code": "heapq.heappush(h,x)"
+    },
+    {
+        "id": "int34",
+        "description": "Heap pop",
+        "code": "heapq.heappop(h)"
+    },
+    {
+        "id": "int35",
+        "description": "Sliding window max",
+        "code": "deque method"
+    },
+    {
+        "id": "int36",
+        "description": "Roman to int",
+        "code": "mapping dict"
+    },
+    {
+        "id": "int37",
+        "description": "Int to Roman",
+        "code": "division mapping"
+    },
+    {
+        "id": "int38",
+        "description": "Word frequency",
+        "code": "Counter(words)"
+    },
+    {
+        "id": "int39",
+        "description": "Subarray sum",
+        "code": "prefix sum"
+    },
+    {
+        "id": "int40",
+        "description": "Kth largest",
+        "code": "heapq.nlargest(k,a)"
+    },
+    {
+        "id": "int41",
+        "description": "Top k frequent",
+        "code": "Counter + heap"
+    },
+    {
+        "id": "int42",
+        "description": "String compression",
+        "code": "run length encoding"
+    },
+    {
+        "id": "int43",
+        "description": "Longest substring no repeat",
+        "code": "sliding window"
+    },
+    {
+        "id": "int44",
+        "description": "Valid parentheses",
+        "code": "stack check"
+    },
+    {
+        "id": "int45",
+        "description": "Matrix spiral",
+        "code": "layer traversal"
+    },
+    {
+        "id": "int46",
+        "description": "Merge intervals",
+        "code": "sort + merge"
+    },
+    {
+        "id": "int47",
+        "description": "Jump game",
+        "code": "greedy max reach"
+    },
+    {
+        "id": "int48",
+        "description": "Coin change",
+        "code": "dp array"
+    },
+    {
+        "id": "int49",
+        "description": "Edit distance",
+        "code": "dp matrix"
+    },
+    {
+        "id": "int50",
+        "description": "Subset sum",
+        "code": "dp boolean"
+    },
+    {
+        "id": "int51",
+        "description": "Knapsack",
+        "code": "dp 2D"
+    },
+    {
+        "id": "int52",
+        "description": "Longest common subsequence",
+        "code": "dp"
+    },
+    {
+        "id": "int53",
+        "description": "Permutations",
+        "code": "itertools.permutations"
+    },
+    {
+        "id": "int54",
+        "description": "Combinations",
+        "code": "itertools.combinations"
+    },
+    {
+        "id": "int55",
+        "description": "Binary addition",
+        "code": "bin(int(a,2)+int(b,2))"
+    },
+    {
+        "id": "int56",
+        "description": "Missing number",
+        "code": "n*(n+1)//2-sum(a)"
+    },
+    {
+        "id": "int57",
+        "description": "Find duplicate",
+        "code": "set detection"
+    },
+    {
+        "id": "int58",
+        "description": "Cycle detection list",
+        "code": "Floyd algorithm"
+    },
+    {
+        "id": "int59",
+        "description": "Rotate matrix",
+        "code": "zip reverse"
+    },
+    {
+        "id": "int60",
+        "description": "Median sorted arrays",
+        "code": "merge + median"
+    },
+    {
+        "id": "int61",
+        "description": "Climb stairs",
+        "code": "dp fibonacci"
+    },
+    {
+        "id": "int62",
+        "description": "House robber",
+        "code": "dp max"
+    },
+    {
+        "id": "int63",
+        "description": "Island count",
+        "code": "dfs grid"
+    },
+    {
+        "id": "int64",
+        "description": "Graph cycle detect",
+        "code": "dfs colors"
+    },
+    {
+        "id": "int65",
+        "description": "Trie insert",
+        "code": "node dict"
+    },
+    {
+        "id": "int66",
+        "description": "Trie search",
+        "code": "prefix traversal"
+    },
+    {
+        "id": "int67",
+        "description": "Quick sort",
+        "code": "divide pivot"
+    },
+    {
+        "id": "int68",
+        "description": "Merge sort",
+        "code": "divide merge"
+    },
+    {
+        "id": "int69",
+        "description": "Selection sort",
+        "code": "min swap"
+    },
+    {
+        "id": "int70",
+        "description": "Insertion sort",
+        "code": "shift insert"
+    },
+    {
+        "id": "int71",
+        "description": "Bit count",
+        "code": "bin(n).count('1')"
+    },
+    {
+        "id": "int72",
+        "description": "Power of two",
+        "code": "n&(n-1)==0"
+    },
+    {
+        "id": "int73",
+        "description": "Reverse integer",
+        "code": "int(str(n)[::-1])"
+    },
+    {
+        "id": "int74",
+        "description": "String to int atoi",
+        "code": "strip parse"
+    },
+    {
+        "id": "int75",
+        "description": "Largest rectangle histogram",
+        "code": "stack"
+    },
+    {
+        "id": "int76",
+        "description": "Stock buy sell",
+        "code": "max profit"
+    },
+    {
+        "id": "int77",
+        "description": "Water trapping",
+        "code": "two pointers"
+    },
+    {
+        "id": "int78",
+        "description": "Decode ways",
+        "code": "dp string"
+    },
+    {
+        "id": "int79",
+        "description": "Word break",
+        "code": "dp substring"
+    },
+    {
+        "id": "int80",
+        "description": "Alien dictionary",
+        "code": "topo sort"
+    },
+    {
+        "id": "int81",
+        "description": "Course schedule",
+        "code": "topological sort"
+    },
+    {
+        "id": "int82",
+        "description": "LRU cache",
+        "code": "OrderedDict"
+    },
+    {
+        "id": "int83",
+        "description": "Clone graph",
+        "code": "dfs copy"
+    },
+    {
+        "id": "int84",
+        "description": "Min stack",
+        "code": "two stacks"
+    },
+    {
+        "id": "int85",
+        "description": "Evaluate RPN",
+        "code": "stack eval"
+    },
+    {
+        "id": "int86",
+        "description": "Serialize tree",
+        "code": "preorder"
+    },
+    {
+        "id": "int87",
+        "description": "Deserialize tree",
+        "code": "parse tokens"
+    },
+    {
+        "id": "int88",
+        "description": "String zigzag",
+        "code": "row mapping"
+    },
+    {
+        "id": "int89",
+        "description": "Sudoku valid",
+        "code": "set checks"
+    },
+    {
+        "id": "int90",
+        "description": "Sudoku solve",
+        "code": "backtracking"
+    },
+    {
+        "id": "int91",
+        "description": "N queens",
+        "code": "backtracking"
+    },
+    {
+        "id": "int92",
+        "description": "Word ladder",
+        "code": "bfs"
+    },
+    {
+        "id": "int93",
+        "description": "Max depth tree",
+        "code": "dfs"
+    },
+    {
+        "id": "int94",
+        "description": "Symmetric tree",
+        "code": "mirror check"
+    },
+    {
+        "id": "int95",
+        "description": "Path sum",
+        "code": "dfs sum"
+    },
+    {
+        "id": "int96",
+        "description": "Flatten binary tree",
+        "code": "preorder"
+    },
+    {
+        "id": "int97",
+        "description": "Lowest common ancestor",
+        "code": "dfs"
+    },
+    {
+        "id": "int98",
+        "description": "Balanced tree",
+        "code": "height check"
+    },
+    {
+        "id": "int99",
+        "description": "Binary tree level order",
+        "code": "queue bfs"
+    },
+    {
+        "id": "int100",
+        "description": "Diameter tree",
+        "code": "dfs max path"
+    }
+]
